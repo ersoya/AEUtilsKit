@@ -5,7 +5,7 @@ import PackageDescription
 let package = Package(
     name: "AEUtilsKit",
     platforms: [
-        .iOS(.v13)
+        .iOS(.v13),
     ],
     products: [
         .library(
@@ -15,7 +15,7 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/onevcat/Kingfisher.git", from: "7.0.0"),
-        .package(url: "https://github.com/hackiftekhar/IQKeyboardManager", branch: "master")
+        .package(url: "https://github.com/hackiftekhar/IQKeyboardManager", from: "6.5.0")
     ],
     targets: [
         .target(
