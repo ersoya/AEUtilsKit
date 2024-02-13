@@ -26,6 +26,7 @@ public extension CGFloat {
     static let ten: CGFloat = 10.0
     static let twelve: CGFloat = 12.0
     static let fourteen: CGFloat = 14.0
+    static let sixteen: CGFloat = 16.0
     static let twentyFour: CGFloat = 24.0
     static let thirthy: CGFloat = 30.0
     static let fourtyEight: CGFloat = 48.0
