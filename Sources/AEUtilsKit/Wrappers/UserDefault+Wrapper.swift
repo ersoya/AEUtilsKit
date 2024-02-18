@@ -8,12 +8,14 @@
 import Foundation
 
 @propertyWrapper
-public struct UserDefault<Value> {
+public struct UserDefault<Value: Codable> {
     
     private let key: String
     private let defaultValue: Value
     
     private var container: UserDefaults = .standard
+    private let encoder: JSONEncoder = .init()
+    private let decoder: JSONDecoder = .init()
     
     public init(key: String, defaultValue: Value) {
         self.key = key
@@ -22,10 +24,18 @@ public struct UserDefault<Value> {
     
     public var wrappedValue: Value {
         get {
-            return container.object(forKey: key) as? Value ?? defaultValue
+            guard
+                let data = container.object(forKey: key) as? Data,
+                let model = try? decoder.decode(Value.self, from: data)
+            else {
+                return defaultValue
+            }
+            
+            return model
         }
         set {
-            container.set(newValue, forKey: key)
+            guard let model = try? encoder.encode(newValue) else { return }
+            container.set(model, forKey: key)
         }
     }
 }
