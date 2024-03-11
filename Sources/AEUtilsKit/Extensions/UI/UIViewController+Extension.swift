@@ -104,20 +104,47 @@ public extension UIViewController {
         let options: UIAlertController = .init(title: nil, message: title, preferredStyle: .actionSheet)
        
         actions.forEach { action in
-            let editAction: UIAlertAction = .init(
-                title: action.title, style: action.style ?? .default
-            ) { _ in
+            let newAction: UIAlertAction = .init(title: action.title, style: action.style ?? .default) { _ in
                 completion(action)
             }
             if let color = action.color {
-                editAction.setValue(color, forKey: "titleTextColor")
+                newAction.setValue(color, forKey: "titleTextColor")
             }
-            options.addAction(editAction)
+            options.addAction(newAction)
         }
 
         present(options, animated: true, completion: nil)
     }
 }
+
+// MARK: - Alert
+public protocol AlertProtocol {
+    var title: String { get }
+    var style: UIAlertAction.Style? { get }
+    var color: UIColor? { get }
+}
+
+public typealias AlertCompletion = (AlertProtocol) -> Void
+
+public extension UIViewController {
+
+    func showAlert(title: String, message: String? = nil, actions: [AlertProtocol], completion: @escaping AlertCompletion) {
+        let alert: UIAlertController = .init(title: title, message: message, preferredStyle: .alert)
+
+        actions.forEach { action in
+            let newAction: UIAlertAction = .init(title: action.title, style: action.style ?? .default) { _ in
+                completion(action)
+            }
+            if let color = action.color {
+                newAction.setValue(color, forKey: "titleTextColor")
+            }
+            alert.addAction(newAction)
+        }
+
+        present(alert, animated: true, completion: nil)
+    }
+}
+
 
 // MARK: - Bar Button Item
 public extension UIViewController {
