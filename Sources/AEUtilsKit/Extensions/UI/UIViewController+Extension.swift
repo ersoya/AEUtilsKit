@@ -39,7 +39,7 @@ public extension UIViewController {
                                 font: UIFont,
                                 isTitleLeftAligned: Bool? = nil,
                                 title: String? = nil,
-                                foregroundColor: String? = nil,
+                                foregroundColor: UIColor? = nil,
                                 backImage: UIImage? = nil) {
         let backBarButtonItem: UIBarButtonItem = .init(title: .empty, style: .plain, target: nil, action: nil)
         navigationItem.backBarButtonItem = backBarButtonItem
@@ -53,6 +53,10 @@ public extension UIViewController {
             appearance.setBackIndicatorImage(backImage, transitionMaskImage: backImage)
         }
         
+        appearance.titleTextAttributes = [
+            .font: font.withSize(18.0),
+            .foregroundColor: foregroundColor ?? UIColor.black
+        ]
         appearance.backgroundColor = backgroundColor
         appearance.shadowColor = .clear
         
@@ -61,11 +65,6 @@ public extension UIViewController {
         navigationItem.compactAppearance = appearance
         
         if let title = title {
-            appearance.titleTextAttributes = [
-                .font: font.withSize(18.0),
-                .foregroundColor: foregroundColor ?? UIColor.black
-            ]
-            
             if let isTitleLeftAligned = isTitleLeftAligned, isTitleLeftAligned {
                 let leftTitleBarButtonItem: UIBarButtonItem = .init(title: title, style: .plain, target: nil, action: nil)
                 leftTitleBarButtonItem.setTitleTextAttributes([
