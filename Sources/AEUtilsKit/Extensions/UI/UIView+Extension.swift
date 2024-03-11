@@ -65,11 +65,16 @@ public extension UIView {
             self?.layoutIfNeeded()
         }
     }
-
-    var safeAreaHeight: CGFloat {
-        safeAreaLayoutGuide.layoutFrame.size.height
-    }
     
+    func addGradientLayer(colors: [CGColor]) {
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.frame = CGRect(x: .zero, y: .zero, width: .screenWidth, height: .screenHeight)
+        gradientLayer.locations = [0.0, 1.0]
+        gradientLayer.shouldRasterize = true
+        gradientLayer.colors = colors
+        layer.insertSublayer(gradientLayer, at: .zero)
+    }
+
     func roundCorners(_ corners: UIRectCorner, radius: CGFloat) {
         let roundedLayer = CAShapeLayer()
         roundedLayer.path = UIBezierPath(
@@ -78,6 +83,10 @@ public extension UIView {
             cornerRadii: CGSize(width: radius, height: radius)
         ).cgPath
         layer.mask = roundedLayer
+    }
+    
+    var safeAreaHeight: CGFloat {
+        safeAreaLayoutGuide.layoutFrame.size.height
     }
 }
 
