@@ -20,20 +20,20 @@ public extension UIViewController {
         }
     }
 
-    func showHideNavigationBar(isHidden: Bool, animated: Bool = false) {
+    func setVisibilityOfNavigationBar(to isHidden: Bool, animated: Bool = true) {
         navigationController?.setNavigationBarHidden(isHidden, animated: animated)
     }
 
-    func showHideTabBar(isHidden: Bool) {
+    func setVisibilityOfTabBar(to isHidden: Bool) {
         guard var frame = tabBarController?.tabBar.frame else { return }
         tabBarController?.tabBar.isHidden = isHidden
-        
-        frame.origin.y = view.frame.height + (isHidden ? CGFloat.eighty : -CGFloat.eighty)
+
+        frame.origin.y = view.frame.size.height + (isHidden ? frame.size.height : -frame.size.height)
         view.animateView(withDuration: CGFloat.zeroPointThree) { [weak self] in
             self?.tabBarController?.tabBar.frame = frame
         }
     }
-
+    
     func configureNavigationBar(tintColor: UIColor,
                                 backgroundColor: UIColor,
                                 font: UIFont,
