@@ -25,4 +25,16 @@ public extension UIColor {
         
         self.init(red: red, green: green, blue: blue, alpha: alpha)
     }
+    
+    static func randomColor() -> UIColor {
+        .init(red: .random(), green: .random(), blue: .random(), alpha: .one)
+    }
+    
+    static func generateRandomColors(upTo count: Int) -> [UIColor] {
+        var colors: [UIColor] = []
+        for _ in .zero ..< count {
+            colors.append(.randomColor())
+        }
+        return colors
+    }
 }
