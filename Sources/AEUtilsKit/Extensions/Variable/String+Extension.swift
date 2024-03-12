@@ -25,6 +25,10 @@ public extension String {
     var trimmed: String {
         trimmingCharacters(in: .whitespacesAndNewlines)
     }
+    
+    var intValue: Int {
+        Int(self) ?? .zero
+    }
 
     var htmlToAttributedString: NSAttributedString? {
         guard let data = data(using: .utf8) else { return nil }
