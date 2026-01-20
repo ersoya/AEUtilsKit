@@ -22,8 +22,8 @@ public extension UILabel {
                    textColor: UIColor,
                    isAttributedString: Bool? = nil,
                    font: UIFont? = nil,
-                   fontSize: LabelSize = .medium) {
-        self.font = font?.withSize(fontSize.rawValue.cgFloatValue)
+                   size: CGFloat = 16.0) {
+        self.font = font?.withSize(size)
         self.textColor = textColor
         
         if isAttributedString ?? false {
