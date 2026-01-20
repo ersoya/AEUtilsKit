@@ -9,6 +9,28 @@ import Foundation
 import UIKit
 
 public extension UIViewController {
+    
+    func push(_ viewController: UIViewController, animated: Bool = true) {
+        DispatchQueue.main.async {
+            self.navigationController?.pushViewController(viewController, animated: animated)
+        }
+    }
+
+    func presentAsSheet(_ viewController: UIViewController, animated: Bool = true) {
+        DispatchQueue.main.async {
+            viewController.modalPresentationStyle = .pageSheet
+            self.present(viewController, animated: animated, completion: nil)
+        }
+    }
+
+    func dismiss() {
+        DispatchQueue.main.async {
+            self.dismiss(animated: true)
+        }
+    }
+}
+
+public extension UIViewController {
 
     func setTabBarItem(image: UIImage, title: String) {
         tabBarItem.image = image

@@ -5,6 +5,7 @@
 //  Created by Arda Ersoy on 14.08.2024.
 //
 
+import Foundation
 import UIKit
 
 public extension NSCollectionLayoutSize {
