@@ -23,6 +23,7 @@ public extension CGFloat {
     static let one: CGFloat = 1.0
     static let two: CGFloat = 2.0
     static let three: CGFloat = 3.0
+    static let four: CGFloat = 4.0
     static let five: CGFloat = 5.0
     static let six: CGFloat = 6.0
     static let eight: CGFloat = 8.0
