@@ -72,3 +72,14 @@ public extension String {
         return regex.firstMatch(in: lhs, options: [], range: range) != nil
     }
 }
+
+public extension String {
+
+    static var currencySymbol: String {
+        Locale.current.currencySymbol ?? "$"
+    }
+    
+    var toDolar: String {
+        Self.currencySymbol + self
+    }
+}
