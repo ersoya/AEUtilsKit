@@ -15,5 +15,6 @@ public extension Int {
     static let six: Int = 6
     static let seven: Int = 7
     static let ten: Int = 10
+    static let thirteen: Int = 13
     static let sixty: Int = 60
 }
