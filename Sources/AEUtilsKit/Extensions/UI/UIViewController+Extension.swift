@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import SnapKit
 
 public extension UIViewController {
     
@@ -185,6 +186,107 @@ public extension UIViewController {
             navigationItem.leftBarButtonItem = barButtonItem
         case .right:
             navigationItem.rightBarButtonItem = barButtonItem
+        }
+    }
+}
+
+// MARK: - Toast View Extension
+public final class ToastWindow: UIWindow {
+
+    public static let shared: UIWindow = {
+        let windowScene = UIApplication.shared
+            .connectedScenes
+            .compactMap { $0 as? UIWindowScene }
+            .first
+
+        let window = UIWindow(windowScene: windowScene!)
+        window.backgroundColor = .clear
+        window.windowLevel = .alert + .one
+        window.isHidden = true
+        window.rootViewController = UIViewController()
+        return window
+    }()
+}
+
+public extension UIViewController {
+    
+    func showToastView(backgroundColor: UIColor, text: String, textColor: UIColor, font: UIFont, duration: CGFloat = .zeroPointThree) {
+        let window = ToastWindow.shared
+        window.isHidden = false
+        
+        guard window.subviews.first(where: { $0.tag == 728_364 }) == nil else {
+            return
+        }
+        
+        let containerView = UIView()
+        containerView.tag = 728_364
+        containerView.layer.cornerRadius = .twelve
+        containerView.clipsToBounds = true
+        containerView.backgroundColor = backgroundColor
+        containerView.translatesAutoresizingMaskIntoConstraints = false
+
+        let titleLabel = UILabel()
+        titleLabel.numberOfLines = .zero
+        titleLabel.configure(
+            text: text,
+            textColor: textColor,
+            font: font,
+            size: .sixteen
+        )
+        
+        containerView.addSubview(titleLabel)
+        titleLabel.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(CGFloat.twelve)
+            make.trailing.equalToSuperview().inset(CGFloat.twelve)
+            make.top.equalToSuperview().offset(CGFloat.twelve)
+            make.bottom.equalToSuperview().inset(CGFloat.twelve)
+        }
+        
+        let height = CGFloat.fourtyEight
+        let topConstraintConstant = -(height + window.safeAreaInsets.top + .four)
+        
+        window.addSubview(containerView)
+        containerView.snp.makeConstraints { make in
+            make.height.equalTo(height).priority(.medium)
+            make.top.equalTo(window.safeAreaLayoutGuide.snp.top).offset(topConstraintConstant)
+            make.leading.equalToSuperview().offset(CGFloat.sixteen)
+            make.trailing.equalToSuperview().inset(CGFloat.sixteen)
+        }
+        
+        window.setNeedsLayout()
+        window.layoutIfNeeded()
+        
+        containerView.snp.updateConstraints { make in
+            make.top.equalTo(window.safeAreaLayoutGuide.snp.top).offset(CGFloat.zero)
+        }
+        
+        UIView.animate(
+            withDuration: duration,
+            delay: .zero,
+            options: .curveLinear,
+            animations: {
+                window.layoutIfNeeded()
+            }
+        )
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + CGFloat.three) {
+            if containerView.isDescendant(of: window) {
+                containerView.snp.updateConstraints { make in
+                    make.top.equalTo(window.safeAreaLayoutGuide.snp.top).offset(topConstraintConstant)
+                }
+                
+                UIView.animate(
+                    withDuration: duration / .two,
+                    delay: .zero,
+                    options: .curveLinear,
+                    animations: {
+                        window.layoutIfNeeded()
+                    }, completion: { _ in
+                        containerView.removeFromSuperview()
+                        ToastWindow.shared.isHidden = true
+                    }
+                )
+            }
         }
     }
 }
