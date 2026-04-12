@@ -14,12 +14,16 @@ public extension CGFloat {
     
     static let zero: CGFloat = 0.0
     static let zeroPointZeroTwo: CGFloat = 0.02
+    static let zeroPointOne: CGFloat = 0.1
+    static let zeroPointTwelve: CGFloat = 0.12
+    static let zeroPointFifteen: CGFloat = 0.15
     static let zeroPointTwo: CGFloat = 0.2
     static let zeroPointThree: CGFloat = 0.3
     static let zeroPointFour: CGFloat = 0.4
     static let zeroPointFive: CGFloat = 0.5
+    static let zeroPointSeven: CGFloat = 0.7
     static let zeroPointEight: CGFloat = 0.8
-    
+
     static let one: CGFloat = 1.0
     static let two: CGFloat = 2.0
     static let three: CGFloat = 3.0
@@ -29,22 +33,34 @@ public extension CGFloat {
     static let eight: CGFloat = 8.0
     static let ten: CGFloat = 10.0
     static let twelve: CGFloat = 12.0
+    static let thirteen: CGFloat = 13.0
     static let fourteen: CGFloat = 14.0
     static let fifteen: CGFloat = 15.0
     static let sixteen: CGFloat = 16.0
+    static let seventeen: CGFloat = 17.0
     static let eighteen: CGFloat = 18.0
     static let twenty: CGFloat = 20.0
+    static let twentyTwo: CGFloat = 22.0
     static let twentyFour: CGFloat = 24.0
     static let thirty: CGFloat = 30.0
+    static let thirtyTwo: CGFloat = 32.0
+    static let thirtyFour: CGFloat = 34.0
+    static let thirtySix: CGFloat = 36.0
     static let fourty: CGFloat = 40.0
+    static let fourtyFour: CGFloat = 44.0
     static let fourtyEight: CGFloat = 48.0
     static let fifty: CGFloat = 50.0
+    static let fiftyTwo: CGFloat = 52.0
+    static let fiftySix: CGFloat = 56.0
     static let sixty: CGFloat = 60.0
+    static let sixtyFour: CGFloat = 64.0
     static let seventy: CGFloat = 70.0
     static let seventyTwo: CGFloat = 72.0
     static let eighty: CGFloat = 80.0
+    static let ninety: CGFloat = 90.0
     static let nintyTwo: CGFloat = 92.0
     static let oneHundred: CGFloat = 100.0
+    static let oneHundredTwenty: CGFloat = 120.0
     static let oneHundredFifty: CGFloat = 150.0
     static let oneHundredSixty: CGFloat = 160.0
     static let oneHundredAndEighty: CGFloat = 180.0
