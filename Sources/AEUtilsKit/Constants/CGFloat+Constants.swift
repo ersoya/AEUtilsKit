@@ -20,6 +20,7 @@ public extension CGFloat {
     static let zeroPointTwo: CGFloat = 0.2
     static let zeroPointThree: CGFloat = 0.3
     static let zeroPointFour: CGFloat = 0.4
+    static let zeroPointFourFive: CGFloat = 0.45
     static let zeroPointFive: CGFloat = 0.5
     static let zeroPointSeven: CGFloat = 0.7
     static let zeroPointEight: CGFloat = 0.8
